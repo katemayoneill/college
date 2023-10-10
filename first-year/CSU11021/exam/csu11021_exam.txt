@@ -1,0 +1,96 @@
+Part 1:
+Because it was quite a complex problem, I decided to break it down into smaller, easier to understand parts:
+
+I began by first writing a program to compute the average, which I found to be quite simple. This is the pseudo-code I designed:
+
+average = 0
+mode = 0
+count = 0
+tmpAdr = adr
+size = word[adr]
+findSum:
+while(count < size)
+{
+  tmpAdr += 4
+  currentValue = word[tmpAdr]
+  sum += currentValue
+  count ++
+{
+average = sum / count
+
+Simply put, this load each value one by one and adds it into another register, the sum. When it is done adding each value together, it divides the final sum by the number of values, or the first word sized value in memory at the address in r2.
+
+When I finished this simple program, I tackled the issue at hand: How do I find the mode?
+
+I decided to load the address in memory into other, temporary registers so that I could reuse the original multiple times. By doing this, I could just reinitialise my registers after having found the mean and write a new program. This time, the find the mode. This is the pseudo-code I ended up with:
+
+count = 0
+value = 0
+currentValue = 0
+tmpAdr1 = adr
+tmpAdr2 = 0
+timesAppeared = 0
+count2 = 0x0
+mostTimesAppeared = 0
+while(count < size)
+{
+  value = word[tmpAdr1]
+  tmpAdr1 += 4
+  count2 = 0
+  count ++
+  tmpAdr2 = Adr
+  while(count2 < size)
+  {
+    count2 ++
+    currentValue = word[tmpAdr2]
+    tmpAdr2 += 4
+    if(value = currentValue)
+    {
+      timesAppeared ++
+    }
+  }
+  if(timesAppeared > mostTimesAppeared)
+  {
+    mostTimesAppeared = timesAppeared
+    mode = currentValue
+  }
+}
+
+This program is meant to test each value against every other value in the set. If said value is equal to another value, the count for the amount of times that that number has appeared goes up. Having finished testing a value, we compare the amount of times it appeared in the series against the previous count. If it appeared more times, we set it to the new mode.
+However, it isn't perfect, and I wasn't able to get it working properly.
+
+Part 2:
+This problem is even more complex than the first, but I came up with an idea that I thought might work, beginning with writing a problem that will only work for decimal values.
+
+Using multiple if statements, I want to determine whether the value that I am testing is an integer or a mathematical symbol. If its a mathematical symbol I would like to branch to a part of the function that performs the correct arithmetic transformation depending on the symbol. 
+
+
+ currentValue = byte[adr]
+ previousValue = 0
+ TEN = 10
+
+ while(adr != 0)
+ {
+   previousValue = currentValue
+   adr ++
+  currentValue = byte[adr]
+   boolean Multiplication = (currentValue == '*')
+
+   boolean Addition = (currentValue == '+')
+
+   boolean Substraction = (currentValue == '-')
+
+   if(currentValue != '*' && currentValue != '+' && currentValue != '-')
+   {
+     previousValue *= TEN
+     result = currentValue + previousValue
+   }
+         
+    else if(Multiplication)
+   {
+     adr ++
+     currentValue = byte[adr]
+     result = currentValue * previousValue
+
+Sadly, I didn't have the time to finish this problem, but if I had had the time, I would have created more if statements to accommodate all possible expressions. 
+
