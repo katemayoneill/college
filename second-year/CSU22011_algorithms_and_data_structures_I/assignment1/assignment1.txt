@@ -1,0 +1,114 @@
+Assignment 1
+Consult the lecture notes and the book sections regarding the 3-SUM problem if you are uncertain about implementation.
+Keep track of the time you spend for this assignment (in and out of labs). You will be asked for this at the end of this text.
+0. Ensure you can log in to submit.scss.tcd.ie
+Access the above URL.
+If you study in another School and you do not have an SCSS account please request one by emailing help@rt.scss.tcd.ie mentioning your student number and that you need the account for this module.
+If you have forgotten your SCSS account password please reset it by emailing help@rt.scss.tcd.ie.
+ If you are not registered for the module please email the lecturer.
+You should be able to see "course" CSU22011 and Assignment_1 after you log in to the above URL.
+1. Download Code:
+You must download the provided stub java files. These include the following
+csu22011_a1/Collinear.java: a java file with empty methods that you will have to implement.
+csu22011_a1/CollinearTest.java: where you need to add jUnit tests and experiments.
+The sub-directory is important as it corresponds to the package used in these files.
+2. Compilation:
+2.1. In Eclipse:
+Create a new Java Project
+Inside the project create a new package called csu22011_a1
+Inside the class create a new class called Collinear
+Replace the source code of the empty Collinear.java with the contents of the file with the same name provided above.
+Inside the class create a new JUnit test called CollinearTest. Select "New JUnit 4 test" from the options. When prompted select "add JUnit4 library to the build path".
+Replace the source code of the empty CollinearTest.java with the contents of the file with the same name provided above.
+Consult this JUnit tutorial or similar ones to see how to work with JUnit in eclipse and how to run the tests.
+2.2 In the Command Line:
+If you want to use your own editor and compile the assignment in the command line then you will need to download some additional files.
+In the directory containing the sub-directory csu22011_a1, download the packages hamcrest-core-1.3.jar and junit-4.12.jar.
+From the command line in the same directory, to compile type: javac -cp junit-4.12.jar:. csu22011_a1/*.java
+To run the JUnit tests of the compiled code in Linux/Mac type: java -cp hamcrest-core-1.3.jar:junit-4.11.jar:. org.junit.runner.JUnitCore csu22011_a1.CollinearTest
+To run the compiled code in Windows type: java -cp hamcrest-core-1.3.jar;junit-4.12.jar;. org.junit.runner.JUnitCore csu22011_a1.CollinearTest (notice the semicolons).
+If no output is printed then all tests have passed. Any test that fails will print a descriptive line.
+2.3 In Visual Studio Code
+Visual Studio Code has easy integration with Java projects and JUnit tests. Instructions are not provided here but you will find plenty of tutorials online. If anyone sends us the step-by-step instructions we will post them here.
+3. Implementation:
+Write the code for the two stub methods in Collinear.java.
+static int countCollinear(int[] a1, int[] a2, int[] a3)
+static int countCollinearFast(int[] a1, int[] a2, int[] a3)
+The file already contains implementations for the following methods which you should use for implementing countCollinearFast.
+static boolean binarySearch(int[] a, int x)
+static void sort(int[] a)
+The two methods you should implement count the number of sets of 3 points in a1, a2, a3 which are collinear (they lie on the same line) but do not lie on a horizontal line. The other two are binary search and insertionSort (see code/performance in Lecture 4) needed for the efficient implementation of countCollinearFast.
+The paramenters a1, a2 and a3 contain the x-coordinates of points on the horizontal lines y=1, y=2 and y=3, respectively. For example a1[i] (for some i) represents the point (a1[i], 1); a2[i] represents the point (a2[i], 2), etc.
+We are looking for 3 points in a1, a2, a3 which lie on the same line. There are two possibilities: all three points lie on the same horizontal line (y=1, y=2, or y=3) and therefore they are all in the same array, or they lie on a non-horizontal line.
+We want to count how many sets of 3 points in a1, a2, a3 are collinear and lie on a non-horizontal lines. Such a non-horizontal line will have to cross all three of the lines y=1, y=2, y=3, and thus the three collinear points will need to be one from each of the 3 arrays. Here is an example.
+Three points (x1, y1), (x2, y2), (x3, y3) are collinear (i.e., they are on the same line) if
+x1*(y2−y3) + x2*(y3−y1) + x3*(y1−y2)=0
+where y1=1, y2=2, y3=3.
+Therefore, the first two methods you need to implement return the number of triples (i,j,k) for which the above equation holds for the points (a1[i], 1), (a2[j], 2), (a3[k], 3).
+countCollinear should follow a brute-force approach. It should look for collinear triples trying out all combinations of 3 numbers from the three arrays. In the wost case this method should run in O(N^3) time.
+countCollinearFast should implement the same functionality, but run in the worst case in O(N^2 lg(N)) time. Consult the discussion of the 3-SUM problem in lecture notes and book to come up with such an algorithm. The algorithm should make non-trivial use of InsertionSort and Binary Search (These methods were discussed in Lecture 4 and are provided in the files above).
+Note: Please maintain csu22011_a1 as the package you write your code in. Otherwise it will not be able to compile and get marked on submit.scss.tcd.ie.
+4. Testing:
+By reading the source code of Collinear.java and the above jUnit tutorial you should be in a position to extend the testsuite with more test cases. In case of complications please talk to the demonstrators in your lab.
+Sufficient testing and Correctness are marked in this assignment (more on this below).
+Your goal is to write enough tests so that 
+Each method in Collinear.java is tested at least once,
+Each decision (that is, every branch of if-then-else, for, etcd.) in Collinear.java is tested at least once,
+Each line of code in Collinear.java is executed at least once by the tests.
+Each instruction in Collinear.java is executed at least once by the tests.
+The submission server will analyse your tests and code to determine if the above criteria have been satisfied.
+NOTE: If your code has the pattern
+if (condition 1)
+{...}
+else if (condition 2)
+{...}
+else if (condition 3)
+{...}
+Then most probably by the time the last condition (condition 3) is reached, it will always be true (because conditions 1 and 2 being false imply that condition 3 is true). The submission server will complain that you have not tested the line containing condition 3. This in fact means that the 'else' case of the if (condition 3) was never tested. You can get rid of the error by changing the above code to:
+if (condition 1)
+{...}
+else if (condition 2)
+{...}
+else // if (condition 3)
+{...}
+That is, comment out the last if.
+ 
+5. Performance:
+Part 5 of this assignment will not be marked. However it is a good exercise to understand some of the material we have covered so far.
+5.1 Experimental Performance
+First, review the lecture notes on experimentaly measuring the performance of algorithms. Everything you will need here has been covered in class.
+You need to create a main method in CollinearTest that runs all the experiments on countCollinear and countCollinearFast described below, and prints the time each experiment took. This method will not run on the submission server, but you should run it locally on your computers.
+Your experiments in this section should be run from within the provided main method. Do not run these experiments from within a jUnit test.
+5.1.1 countCollinear
+The experiments here should measure the running time of countCollinear when given random arrays of integers of sizes 1000, 2000, 4000. You can use these input files and these auxiliary classes to orchestrate your tests -- see lecture notes.
+You may assume that the arrays have unique numbers. Therefore binary search will return true if there is a single occurrence of the number you are searching for, and false if this number is not in the array -- there is no other case.
+Once you run these experiments and take your measurements:
+Assuming that the running time of countCollinear is of the form aN^b, estimate 'b' and 'a' by fitting a line to the experimental points, as discussed in class. You can use the spreadsheet provided in the lecture notes.
+Predict what the running time of countCollinear is for an input size of 5000.
+Run another experiment of countCollinear with an array of size 5000 and measure the actual running time.
+Calculate the error of your prediction as a percentage.
+Error = ((Actual time)-(Predicted time)) * 100 / (Predicted time)
+5.1.1 countCollinearFast
+The experiments here should measure the running time of countCollinearFast when given random arrays of integers of sizes 1000, 2000, 4000, 5000, as above.
+Compare the two implementations by calculating the speedup of the fast version for each input size
+Speedup = (time of countCollinear)/(time of countCollinearFast)
+5.2 Calculate the Asymptotic Order of Growth of the Running Time
+For all methods in class Collinear use the asymptotic notation "big-Theta" to give and explain the calculations of the asymptotic order of growth of the worst-case input performance of these methods. This is given as a requirement above using the big-O notation, but practice how this can be derived from the code. We have discussed how to perform and present these calculations in class. Being able to do this will be important for the midterm and the exam.
+6. Submission and Automatic Marking:
+6.1 Log in to the Submission Server:
+Se part 0 above.
+6.2 Upload your assignment
+You must upload a single zip of the directory csu22011_a1 containing your modified files  Collinear.java and CollinearTest.java. Please do not include any other files. 
+You can upload new versions of your assignment as many times as you want until the assignment deadline.
+The results page will give you your mark which depends on whether
+your code and tests compile, and the (hidden) reference tests compile against your code (10 marks);
+all your tests pass when run (30 marks),
+all reference tests pass when run (30 marks),
+your tests satisfy the code coverage described above (30 marks). The results allow you to download a zip file with a rich test coverage report which highlights test coverage on your code.
+jUnit is a useful tool to use in all your Java projects. We will certainly keep using it in this module. Please read this online article to familiarise yourself with it more. 
+Test coverage is being mesured using the JaCoCo tool. There are plugins for Eclipse and VSCode you can use to produce the test coverage report on your computer. From the command line you can produce the html report with the following two commands from the directory containing the sub-directory csu22011_a1, after downloading jacocoagent.jar and jacococli.jar, in adiition to the files hamcrest-core-1.3.jar and junit-4.12.jar mentioned above, and have compiled your java files according to the command-line instructions above.
+java -noverify -javaagent:jacocoagent.jar=destfile=coverage.exec -cp junit-4.12.jar:hamcrest-core-1.3.jar:junit-4.12/:. org.junit.runner.JUnitCore csu22011_a1.CollinearTest
+java -jar jacococli.jar report coverage.exec --classfiles . --sourcefiles . --html test_coverage
+If successful the above two command will produce at the end a directory called "test_coverage" with the test coverage report in html.
+6.4 How long did this assignment take to complete?
+Input the hours you spent on this assignment. The input is anonymous and will only be used for statistics. Please try to be as accurate as possible.
