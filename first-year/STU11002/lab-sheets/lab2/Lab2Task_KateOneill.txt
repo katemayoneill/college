@@ -1,0 +1,65 @@
+n_stay <- 0    
+n_switch <- 0
+n_wins <- 0
+n_losses <- 0
+
+for ( i in 1:100) { # for loop x100
+  door <- c(1,2,3) # create an array
+  cardoor <- sample(door,1) # cardoor = 1 random sample from door
+  choice <- sample(door,1) # choice = 1 random sample from door
+  goatdoors <- setdiff(door, cardoor) 
+  # set the goatdoor to be everything in door other than cardoor
+  reveal_options <- setdiff(goatdoors, choice) 
+  # set the reveal_options to be everything in goatdoors other than choice
+  if (choice == cardoor) { 
+    # if cardoor is chosen, set reveal to be a random sample from reveal_options
+    reveal <- sample(reveal_options,1)  
+  } else {
+    # otherwise set reveal to be anything else
+    reveal <- reveal_options 
+  }
+  remaining_doors <-setdiff(door, reveal) 
+  #set remaining doors to be everything in door other than reveal
+  newchoice <- setdiff(remaining_doors, choice)
+  # set newchoice to be anything in remaining doors other than choice
+  
+  switchOrStay <- c("switch", "stay")
+  # create array containing choices switch or stay
+  playerChoice <- sample(switchOrStay, 1)
+  # set player choice to be a random sample from swith or stay
+  
+  if (choice == cardoor) {
+  # if cardoor is chosen, increase the number of stay
+    n_stay <- n_stay + 1
+    if(playerChoice == "stay"){
+      # if, on top of that, the player chose to stay, add to to number of wins
+      n_wins <- n_wins + 1
+    }
+    if(playerChoice == "switch")
+      # if however, the player chose to switch, increase number of losses
+    {
+      n_losses = n_losses + 1
+    }
+  }
+  
+  if (newchoice == cardoor) {
+    # if in the next choise, cardoor is chosen, increase the number of switch 
+    n_switch <- n_switch + 1
+    if(playerChoice == "switch"){
+      # if, on top of that, the player chose to switch, increase the number of wins
+      n_wins <- n_wins + 1
+    }
+    if(playerChoice == "stay")
+      # if, however the player chose to stay, increase number of losses
+    {
+      n_losses = n_losses + 1
+    
+  }
+
+
+  }
+}
+print(n_stay/100) #print number of stays in percentage form
+print(n_switch/100)# print number of switches in percentage form
+print(n_wins/100)# print number of wins in percentage form
+print(n_losses/100)# print number of losses in percentage form

@@ -1,0 +1,23 @@
+This assignment is designed to assess your ability to conduct and critique a simple piece of data analysis.
+You may make multiple attempts, the final attempt before the deadline will be marked.
+INSTRUCTIONS
+***
+Gather and record 30 pieces of continuous data from a larger population, such as:
+- weight of scoops of rice
+- time for you to commute to college
+- height of students in the class
+Write a report under the following headings, that completes the requested tasks. Your report should not exceed 2 A4 pages of typed 12-point Calibri or equivalent, with 1 inch margins (the default margins in Word). Upload your report as a pdf.
+1) Sampling Process
+Describe and comment on the sampling process of your data. Is it a simple random sample? (Note: you will *not* be graded on how close your process was to SRS, only on your thoughts about the process. For the remainder of the assignment, assume your sample was taken via SRS.)
+2) Data Description
+Summarize the characteristics of your data. Graph your data. Comment on the distribution of your data.
+Discuss the appropriateness of a) the Z distribution and b) the t distribution for confidence intervals and hypothesis tests on this data. Which is most suitable?
+4) Estimation
+Using the distribution chosen as most suitable in 3) Calculate a) a 95% confidence interval and b) a 97.5% confidence interval for the mean of the population. Briefly and neatly show your formulas and calculations.  
+5) Hypothesis Testing
+Let u be the median value of your data. Using the distribution chosen in 3) and significance alpha =0.025, conduct a one-sample hypothesis test for H0: The mean of the population is equal to u. Briefly and neatly show your formulas and calculations.  
+What is your conclusion and interpretation of these results?
+6) Sample Size
+Assume you are interested in taking a sample of data from a similar population, in order to estimate a 99% confidence interval for the mean. Let m be the width of the 95% confidence interval you calculated earlier. Estimate the sample size you would need if you wished for the width of your 99% confidence interval to not exceed m/2. 
+Comment on the accuracy of your sample size estimate. Is it reliable?
+***
