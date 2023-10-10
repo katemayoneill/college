@@ -1,0 +1,138 @@
+Chuck-a-Luck Dice Game
+[ Due 27th of February 2022 before 23:59]
+Chuck-A-Luck is a dice game where 3 six sided dice tumble in a spinning cage and players can place bets with a House dealer on the outcome of the 3 dice when the cage stops spinning. It originated in British Pubs many years ago and started without spinning cages. Instead, players used a horn-shaped chute made of leather or metal to "chuck" the 3 dice across a table and then take their "luck" on how they landed. Today, Chuck-A-Luck is still popular at many first-class casinos around the world [see Wikepeda page: Chuck-a-luck]. The following table shows the type of bets a player can make with the House on the outcome of the 3 dice and the payout (odds) associated with the bet if the outcome of the 3 dice satisfies the bet's condition:
+  
+Triple: All three dice must show the same number (e.g. all 3s). However, the House wins if the Triple is all 1s or all 6s. A Tripe is paid at thirty to one (30:1). 
+Field: The total of the numbers shown on the 3 dice must sum to a number less than 8 or greater then 12. A Field is paid at one to one (1:1).
+High: The total of the numbers shown on the 3 dice must sum to a number greater than 10. The payoff is one to one (1:1) unless there is a high Triple, i.e., three 4s (12), three 5s (15), or three 6s (18), in which case the High bet loses. There are 108 possible combinations of the 3 dice that add up to over 10, and only 3 of them are Triples.
+Low: The total of the numbers shown on the 3 dice must sum to a number less than 11. The payoff is one to one (1:1) unless there is a low Triple, i.e., three 1s (3), three 2s (6), or three 3s (9), in which case the Low bet loses. There are 108 possible combinations of the 3 dice that add up to under 11, and only 3 of them are Triples.
+A player arrives to a Chuck-A-Luck dice game with a given sum of money in their wallet/purse and can place bets (one at a time) on the outcome of the chucking of the 3 dice. A player's bet is a choice of one of the Chuck-A-Luck types of bets and a proportion money which must be taken from their wallet/purse prior to the throwing of the 3 dice by the House's dealer. The result of a players bet is resolved immediately after the dice are thrown; if the outcome of the throw of the three dice satisfies the player's bet then the player's remaining sum of money in their wallet/purse is incremented by their winnings plus the sum of money they place on the bet. The player can keep playing until either they run of money in their wallet/purse or decided to stop playing the Chuck a Luck dice game.
+Write a Java program which will allow a user to repeatedly play the Chuck a Luck game until they either they run of money in their wallet or purse or decided to stop playing (while they are ahead). Your program MUST make use of the Dice and Wallet data types (Java classes) defined below.
+Your program requires:
+1. mainline (parts of the mainline can be implemented in new methods that you can create) which does the following:
+Asks the user for the amount of cash he/she has and creates a Wallet object and puts this cash into it.
+Allows the user to play continuously placing any of the four bet types until the user either enters quit or the cash in the wallet is 0.
+For each bet placed by the user, the resolveBet method is called.
+Once the game is over, provides an overall summary by comparing the cash in the wallet with what the user initially started with.
+ 
+2. ResolveBet method which takes the bet type (String) and the Wallet object and does not return anything:
+Presents the amount of cash in the wallet and ask the user how much he/she would like to bet
+Ensures the bet amount is not greater than the cash in the wallet
+Checks to see if the bet is correct by creating three Dice objects and rolling them and comparing roll output with the bet type.
+outputs the results (win or loss) and adds the winnings to the wallet if user wins or removes the bet amount from the wallet if the user loses. 
+Just before you submit your program you need to do a self-assessment exercise to evaluate how well you did...
+Copy the multi line comment below and put it at the top of your program. Put in a mark and a comment (explainingwhat you did) for each criterion (even if you have given yourself full marks, otherwise one mark will be deducted per criterion that is missing this information).
+/* SELF ASSESSMENT 
+
+1. ResolveBet
+I have correctly defined ResolveBet which takes the bet type (String) and the Wallet object, and a void return type [Mark out of 7: ].
+Comment:
+My program presents the amount of cash in the wallet and asks the user how much he/she would like to bet [Mark out of 8: ].
+Comment:
+My program ensures the bet amount is not greater than the cash in the wallet [Mark out of 5: ].
+Comment:
+My program creates three Dice objects, rolls them and creates a total variable with a summation of the roll values returned [Mark out of 15: ]..
+Comment:
+My program determines the winnings by comparing the bet type with the total and comparing the bet type with the dice faces for the triple bet [Mark out of 20: ].
+Comment:
+My program outputs the results (win or loss) and adds the winnings to the wallet if user wins or removes the bet amount from the wallet if the user loses [Mark out of 10: ].
+Comment:
+
+2. Main
+I ask the user for the amount of cash he/she has, create a Wallet object and put this cash into it [Mark out of 15: ]
+Comment:
+My program loops continuously until the user either enters quit or the cash in the wallet is 0 [Mark out of 5: ]
+Comment:
+I ask the user to enter any of the four bet types or quit [Mark out of 5: ].
+Comment:
+My program calls resolveBet for each bet type entered [Mark out of 5: ].
+Comment:
+At the end of the game my program presents a summary message regarding winnings and losses [Mark out of 5: ]
+Comment:
+
+ Total Mark out of 100 (Add all the previous marks):
+*/
+Item
+Dice.javaDice.java
+Attached Files:
+File Dice.java (842 B)
+
+public class Dice {
+    // number of sides on dice
+    private final int sides;
+
+    // current number on top face of dice
+    private int topFace;
+
+    // construct a dice with n sides, pre-condition: n > 1
+    public Dice(int n) {
+        sides = n > 1 ? n : 2; // ensure at least 2 sides
+        topFace = (int) (Math.random() * sides) + 1;
+    }
+
+    // construct a dice with 6 sides
+    public Dice() {
+        this(6); // invoke Dice constructor with value 6
+    }
+
+    // return current value of top face of dice
+    public int topFace() {
+        return topFace;
+    }
+
+    // roll the dice; returning the result
+    public int roll() {
+        topFace = (int) (Math.random() * sides) + 1;
+        return topFace;
+    }
+
+    // convert to a String data type value
+    public String toString() {
+        return getClass().getName() + "[sides = " + sides + ", topFace = " + topFace + "]";
+    }
+
+}
+Item
+Wallet.javaWallet.java
+Attached Files:
+File Wallet.java (825 B)
+
+public class Wallet {
+
+    // current cash in wallet
+    private double cash;
+
+    // construct wallet with zero cash
+    public Wallet() {
+        cash = 0.0;
+    }
+
+    // put an amount of money into wallet
+    // pre-condition: money > 0.0
+    public void put(double money) {
+        if (money > 0.0)
+            cash = cash + money;
+    }
+
+    // get an amount of money from wallet
+    // returns true if wallet had enough cash, false otherwise
+    // pre-condition: money > 0.0
+    public boolean get(double money) {
+        if (money > 0.0 && cash >= money) {
+            cash = cash - money;
+            return true;
+        }
+        return false;
+    }
+
+    // return current amount of cash in wallet
+    public double check() {
+        return cash;
+    }
+
+    // convert to a String data type value
+    public String toString() {
+        return getClass().getName() + "[cash = " + cash + "]";
+    }
+
+}

@@ -1,0 +1,6 @@
+ Part1:
+ Create a Java class called BankCustomer with the following variables: accountNumber, customerName, customerAddress, customerDateOfBirth
+For each of the variables, write methods to set and get the variables
+Create a BankCustomer object and initialize the variables
+Part2:
+Write a Java class Swap which swaps around two numbers to be inputted by the user without using a third variable
