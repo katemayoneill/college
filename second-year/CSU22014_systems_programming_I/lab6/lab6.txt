@@ -1,0 +1,55 @@
+This is the second part of a two-part lab.
+
+In Lab 5 we implemented a bit vector set, which can be used to track sets of numbers in the range 0 to k-1, where k is a fixed
+constant. The amount of space required by a bit vector set is O(k), so bit vector sets are practical only for sets taken from a relatively
+small universe of items.
+
+In 1970 Burton Howard Bloom proposed a new data structure based on bit vector sets that is now known as a Bloom filter. A Bloom filter can be
+used to store sets of data of any type in any range within a finite-sized bit vector set. However, a Bloom filter is probabilistic:
+If an item has been inserted into a Bloom filter, it is guarantee that when you search for the item that it will be a member of the set.
+However, the Bloom filter also reports false positives: it will report that items are present in the set that have never actually been inserted
+in the set.
+
+A Bloom filter makes extensive us of hashing functions and a bit vector set. A hashing function takes a value of some type and maps it
+to an integer in the range 0 to k. The simplest Bloom filters apply a single hash function to input data and insert the hashed value of the
+input into the bit vector set. Thereafter, if you check for membership of the item in the set it will return true. However, other items may
+hash to the same location with the result that the Bloom filter will also report these as members of the set.
+
+To reduce the number of false positives, Bloom filters normally use more than one hashing function on each input item, and insert each of
+the hashed values into the bit vector set. To subsequently check for membership, your code needs to check that the bit for each of the hash
+functions is set in the bit vector set. The hash functions that you should use are contained in a set of files that
+were supplied with Lab 5. Please write an abstract data type (ADT) to represent an approximate set of strings
+using a Bloom filter. Please create the ADT by completing the functions in the file bloom.c.
+
+Note you will also find the following hash function in bloom.c. To use the has function you should pass either
+BLOOM_HASH1 OR BLOOM_HASH2 as the "seed" parameter, to specify whether you want to compute the
+first or second has function.
+
+const int BLOOM_HASH1 = 17;
+const int BLOOM_HASH2 = 29;
+
+// compute a hash of a string using a seed value, where the result
+// falls between zero and range-1
+int hash_string(char * string, int seed, int range)
+{
+  int i;
+  int hash = 0;
+
+  // simple loop for mixing the input string
+  for ( i = 0; string[i] != '\0'; i++ ) {
+    hash = hash * seed + string[i];
+  }
+  // check for unlikely case that hash is negative
+  if ( hash < 0 ) {
+    hash = -hash;
+  }
+  // bring the hash within the range 0..range-1
+  hash = hash % range;
+  
+  return hash;
+}
+
+Please complete Lab 6 using the files you downloaded for Lab 5. Some people have asked for a separate
+main file that can be used for separate compilation. This file, simple-main.c, is attached to Lab 6. To compile
+your code at the command line with this file type:
+     gcc -o myprog bitset.c bloom.c simple-main.c

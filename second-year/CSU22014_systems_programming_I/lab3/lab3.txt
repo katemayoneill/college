@@ -1,0 +1,51 @@
+This is the second part of a three-part lab that aims to build a bench calculator, that is a program that computes the value
+of simple expressions on the command line. Students who have already completed Part 1 can start Part 2.
+
+Note that some students have found out Makefile a bit complicated to work with. To simplify this problem, I have created a new simple-main.c
+file that can be compiled with the stack, postfix and infix code to easily test them. To use it, download the simple-main.c file to your
+bench-calc director. You can then compile your code with:
+
+gcc -o calc simple-main.c postfix.c infix.c stack.c
+
+This will create the executable file calc. You can execute calc by writing (for example):
+./calc stack 45 27 182 1 -17
+This tests the stack functionality of your code.
+
+You can also test your posttfix calculator by writing something like:
+./calc postfix 35 -4 12 X -
+
+This week's work aims to build a calculator for postfix (also known as reverse-Polish) expressions. Your program should accept command-line
+parameters.
+
+For example, the command line might contain something like:
+./calc postfix 7 -8 3 X 28 + +
+Your program would then output: 11
+    
+The operators that your calculator should support are plus (+), minus (-), multiply (X), divide (/) and to-the-power-of (^), and they should
+operate on double precision floating point numbers. The operands are decimal numbers which can be positive (that is, with no sign, e.g. 4.2), or negative (that is with a minus sign,
+e.g. -4.2).
+
+The algorithm for computing the value of an expression in reverse Polish notation is simple:
+
+for each token in the input string {
+  if ( token is a number ) {
+    push token onto the stack
+  }
+  else if ( token is an operator ) {
+    pop the top two items off the stack
+    apply the operator to the two items
+    push the result onto the stack
+  }
+}
+
+At the end of this computation, if you are dealing with a correctly-formed expression, there should be exactly one number on the stack.
+This is the result of the expression. You should use the stack that you wrote last week to evaluate these expressions.
+
+You may use the C mathematics library (#include <math.h >) to compute the to-the-power-of function. For example, to raise 37.0 to the power of 0.5 write:
+    result = pow(37.0, 0.5);
+
+Note that depending on your C compiler, you may need to add an extra compiler flag when using the math.h library. Some older compilers require
+you to pass the -lm (link maths libraries) flag on the command line so that the linker links to the math library. So you would write something like:
+       gcc -o calc  simple-main.c postfix.c infix.c stack.c -lm  
+
+This lab is the second part of a three-part project for CSU22014. There is no submission of lab work or marking this week.  

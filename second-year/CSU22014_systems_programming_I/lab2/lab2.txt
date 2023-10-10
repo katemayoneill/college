@@ -1,0 +1,85 @@
+This is the first part of a three-part lab that aims to build a bench calculator, that is a program that computes the
+value of simple expressions on the command line. No work needs to be submitted this week, but it is important
+that you do the work, because you will need it next week.
+
+Along with this lab is a bench-cal.zip file containing various C files, and code that allows you to compile and run these files. 
+Download bench-calc.zip to your and save it in the directory where you do your CSU22014 lab work. To unzip the file type:
+       unzip bench-calc.zip
+
+Switch into the directory containing the bench calculator.
+       cd bench-calc
+
+Now compile and test the program:
+       make test_stack
+
+The make program uses a file called Makefile, which contains instructions about how to compile and run the program.
+To compile the program manually without using make, you can type:
+        gcc -Wall -o calc test_files/test_stack.c stack.c -I. -lm -Werror
+
+Note, the program is divided into six different files:
+        infix.h, postfix.h, stack.h
+	infix.c, postfix.c, stack.c
+
+You put the code for your stack, postfix and infix routines in the respective .c file. The .h files are header files that
+contain only declarations. 
+
+The first piece of software that we need to create the bench calculator is a stack of floating point numbers. 
+A stack is a data structure where you can "push" values onto the stack, and "pop" values from the stack in a
+last-in-first-out (LIFO) pattern. Write a stack data structure in the stack.c file. The type declarations for the
+stack can be found in stack.h, and this includes a declaration of a structure (the C equivalent of a class) that
+is used to represent a stack of double-precision floating point values.
+
+struct double_stack {
+  double * items;
+  int max_size;
+  int top;
+};
+
+In the file stack.h, we also have the following prototypes of functions that operate on the double stack:
+
+// create a new empty stack
+struct double_stack * double_stack_new(int max_size);
+// push a value onto the stack
+void double_stack_push(struct double_stack * this, double value);
+// pop a value from the stack
+double double_stack_pop(struct double_stack * this);
+
+You should write implementations of these functions in the file stack.c. To get you started, here is some code for
+creating a new empty stack:
+
+// create a new empty stack
+struct double_stack * double_stack_new(int max_size) {
+  struct double_stack * result;
+
+  // allocate space for the stack header
+  result = malloc(sizeof(struct double_stack));
+  result->max_size = max_size;
+  result->top = 0;
+  // allocate space for the data stored in the stack
+  result->items = malloc(sizeof(double)*max_size);
+  // return a pointer to the newly-allocated stack
+  return result;
+}
+// end of code
+
+The file test_files/test_stack.c also contains a small function that takes in command-line parameters to make it easy to test
+and debug your code. Just for the purposes of explanation, the following is a simple piece of code that demonstrates
+command-line parameters.
+
+// simple main function to demonstrate the use of command-line parameters.
+int main(int argc, char ** argv) { 
+   int i; 
+   if ( argc == 1 ) { 
+     printf("Please try adding some command-line parameters\n"); 
+     printf("Usage: %s <param1> <param2> ...\n", argv[0]); 
+     exit(1); 
+   } 
+   printf("The number of command line parameters is stored in argc: %d\n", argc); 
+   printf("The value of argc counts the name of the program itself as a parameter\n"); 
+   printf("The name of the program is stored in argv[0]: %s\n", argv[0]); 
+   printf("The parameters are:\n");
+   for ( i = 1; i < argc; i++ ) {
+     printf("%s\n", argv[i]);
+   }
+   return 0; 
+} // end of main

@@ -1,0 +1,79 @@
+Huffman coding can be used to remap the encoding of characters so that the frequent characters require fewer bits than less frequent
+characters. Typically, the frequencies are based on looking at some sample text files to get some estimate of the relative commonness of
+different characters.
+
+The basic approach of Huffman coding is as follows:
+o List all possible characters with their frequencies
+o Locate the characters with the smallest frequencies
+o Replace these with a pseudo character pair representing them both,  whose frequency is the sum of the individual frequencies
+o Repeat until the list contains only one member
+
+This process builds a tree-like structure of nested pairs, with real characters at the leaves. To find the encoding of a character,
+traverse the tree from the root to that character and record 0 for a left branch and 1 for a right branch.
+
+The type and function declarations for a Huffman coder. You should not need to modify this routine. Note that the file includes the
+following declaration.
+// node in a Huffman tree is either a compound char (internal node)
+// or a simple char (leaf)
+struct huffchar {
+  int freq;
+  int is_compound;
+  int seqno;
+  union {
+    struct {
+      struct huffchar * left;
+      struct huffchar * right;
+    } compound;
+    unsigned char c;
+  } u;
+};
+
+This declaration includes a C union type. A union type is like a structure except instead of getting all the fields in the union, you
+get just one. In other words, a struct huffchar can contain a compound character with the fields left and right OR a char c. To access char c,
+from a pointer "struct huffchar * p;" write:
+char value = p->u.c;
+
+To access left and right write:
+struct huffchar * l = p->u.compound.left;
+struct huffchar * r = p->u.compound.right;
+
+Add code to the file huff.c to create a C program that reads in a file of text and computes Huffman codes for all the printable characters
+based on the frequencies of the characters. You should write out to the screen each of the characters and the corresponding encodings. One
+common problem is that some characters may not appear in the sample file at all; these should be assigned a frequency of 1, to make sure
+that they get some sort of sensible encoding.
+
+In your solution you should build a linked tree structure representing the Huffman tree. You nodes of the tree should come in two varieties:
+(1) simple nodes representing a single character and (2) compound nodes representing a pair of (possibly compound) characters.
+
+The following code reads in the contents of a file character by character.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+int main(int argc, char ** argv) { 
+  unsigned char c; // we need the character to be unsigned to use it as an index 
+  FILE * file; 
+  if ( argc != 2 ) { 
+  fprintf(stderr, "Useage: huffman <filename>
+  \n");
+  exit(1); // exit with error code 
+  } 
+  file = fopen(argv[1], "r"); 
+  assert( file != NULL ); 
+  c = fgetc(file); // attempt to read a byte 
+  while( !feof(file) ) { 
+    printf("%c", c); 
+    c = fgetc(file); 
+  } 
+  fclose(file); 
+  return 0; // exit without error code 
+} 
+
+Note that when computing Huffman codes, it is common that more than one node in the tree has the same frequency. 
+From the point of view of computing correct Huffman codes, either can be chosen.   However, to make 
+it easier to verify the correctness of results, please always select the character with the lower sequence 
+number first. The sequence number of a simple character is simply the numeric value of that character. Please 
+assign compound characters a sequence number in the order they are created, starting at 256. When creating a 
+compound struct huffchar please place the lower frequency sub-character in the "left" pointer of the structure. 
+ 

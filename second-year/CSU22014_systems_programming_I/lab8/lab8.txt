@@ -1,0 +1,16 @@
+Hash tables are one of the most important and commonly used data structures. Insertion, deletion and retrieval from a hash table are
+average-case constant time (i.e. O(1)) operations. There are simple versions of hash tables that are easy to implement (although some more
+sophisticated versions can be complicated). In contrast, balanced binary trees are difficult to implement, and have worse average case
+performance. External chaining hash tables are the simplest to implement.
+
+Implement a hash table abstract data type in C. Each hash table object will be able to hold a set of strings. You should use chaining for
+collision resolution in your hash table. That is, each element of the hash table should be a linked list, and where a collision occurs, just
+add a new element to the list at that point in the hash table. Your abstract data type should look something like:
+
+// a hash table data structure
+struct hashtable {
+ struct listset ** table;
+ int size;
+};
+
+Please complete the empty functions in the attached file hash_table.c. You will also need to introduce your code into listset.c from last week.
