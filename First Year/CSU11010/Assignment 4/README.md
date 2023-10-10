@@ -1,4 +1,5 @@
-Firsts and Passes AssignmentFirsts and Passes Assignment
+Firsts and Passes Assignment
+
 Write a program in Java (and call it FirstsAndPasses) which takes in the number of students in a class and then executes a for loop taking in the percentage obtained by each student in an exam.  The program should do something reasonable if a negative number of students (or 0 students) is entered as the class size. Once all percentages are entered the program should report the number of firsts (those whose rounded marks was 70% or greater) and also the percentage of students who passed i.e. those whose rounded mark was 40% or greater).  If any percentages entered are invalid the user should be told and the value requested again.
 
 Sample expected input/output (3 separate runs, user input in green):
@@ -21,6 +22,7 @@ Enter the percentage obtained by student 2> 99.2
 In this class of 2 students, 2 got a first class honour and 100.0% passed the class
 
 Submission
+
 This assignment must be submitted via Web-CAT (at https://webcat.scss.tcd.ie/cs2012/) by Sunday October 31st at 23:55.  The Web-CAT system will automatically evaluate whether you solved the problem correctly using a number of test cases and will also evaluate whether you used the correct prompts and correct output format.  65% of the marks for this assignment will be awarded automatically based on this Web-CAT evaluation.  You may submit to (and have your code evaluated by) the Web-CAT system as often as you like before the deadline.
 Before you submit though you need to self-assess whether you addressed the requirements to make your code easy to understand.  Copy the multi line comment below and put it at the top of your program.  Put in a mark and a comment for each criterion (even if you have given yourself full marks, otherwise marks will be deducted per criterion that is missing this information).  This self-assessment will be used when the demonstrator marks the understandability of your code (counting in this case for 35% of the marks).
 
