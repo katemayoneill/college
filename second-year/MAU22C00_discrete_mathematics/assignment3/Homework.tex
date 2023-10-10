@@ -1,0 +1,79 @@
+\documentclass[12pt]{exam}
+	
+\usepackage[margin=1in]{geometry}		% For setting margins
+\usepackage{amsmath}				% For Math
+\usepackage{fancyhdr}				% For fancy header/footer
+\usepackage{graphicx}				% For including figure/image
+\usepackage{cancel}	
+% To use the slash to cancel out stuff in work
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{subfiles}
+\usepackage{caption}
+\usepackage{subcaption}
+%%%%%%%%%%%%%%%%%%%%%%
+% Set up fancy header/footer
+\pagestyle{fancy}
+\fancyhead[LO,L]{Kate O'Neill - 21365768}
+\fancyhead[CO,C]{MAUC200 - Assignment 3}
+\fancyhead[RO,R]{\today}
+\fancyfoot[LO,L]{}
+\fancyfoot[CO,C]{\thepage}
+\fancyfoot[RO,R]{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{questions}
+\question
+    \begin{parts}
+        \part Yes, the graph is connected as there is a walk from every vertex to every other vertex. See graph 1.
+        \part No, as in order to have a non closed Eulerian trail, it must have exactly two vertices of an odd degree. 
+                \[deg\ f = deg\ g = 2\]
+                \[deg\ a = deg\ b = deg\ c = deg\ d = deg\ e = 4\]
+                Every vertex in \((V,E)\) has an even degree.
+        \part Yes, a non-trivial connected graph had a connected circuit if the degree of each of its vertices are even. 
+        \part Yes, one example is \(egafdbc\).
+        \part No it is not, as it contains circuits such as \(cdec, abca, acega\).
+    \end{parts}
+\question A spanning tree contains every vertex in a connected graph. The pendant edge connects to a pendant vertex, meaning that it is of degree zero, there is only one way it can be included in the spanning tree. Therefore all spanning trees must include the pendant edge. Any pendant edge must be in every spanning tree, as must any edge whose removal disconnects the graph.
+\question
+    \begin{parts}
+        \part See figure 2
+        \part See figure 3
+        \part See figure 4
+    \end{parts}
+\question
+    \begin{parts}
+        \part See figure 5
+        \part
+            $\begin{pmatrix}
+                1 & 1 & 1 & 0 & 0 & 0\\
+                0 & 1 & 0 & 0 & 0 & 0\\
+                0 & 0 & 1 & 0 & 0 & 0\\
+                0 & 1 & 1 & 0 & 1 & 1\\
+                0 & 0 & 0 & 0 & 0 & 1\\
+                0 & 0 & 0 & 0 & 1 & 0
+            \end{pmatrix}$
+        \part \(\varphi(A)=A, \varphi(B)=C, \varphi(C)=B, \varphi(D)=A, \varphi(E)=F, \varphi(F)=F\). See figure 6.
+    \end{parts}
+\question
+    \begin{parts}
+        \part See figure 7.
+        \part An equivalence relation on A is a relation that is \textbf{reflexive, symmetric, and transitive}. The presence of \((a,a),(b,b),(c,c),(d,d),(e,e)\) makes the relation \textbf{reflexive}. Since \((c,a), (d,a), (c,b), (d,e)\) are missing, the relation isn't \textbf{symmetric}.
+        \part The addition of \((c,a), (d,a), (c,b), (d,e), (b,e), (e,b), (c,d), (d,c)\) would make the relation \textbf{symmetric} and \textbf{transitive} as well as \textbf{reflexive}. See figure 8.
+        \part A relation R on a set A is called \textbf{reflexive} \(\iff \forall x \exists A, xRx\). Therefore, we must add 4 pairs in order for the relation to be \textbf{reflexive}: \((a,a),(b,b),(c,c),(d,d)\).
+        \part A relation R on a set A is called \textbf{symmetric} \(\iff \forall x, y \exists A, xRy \to yRx\). An empty relation is \textbf{symmetric}, we do not need to add any ordered pairs.
+        \part An empty relation is \textbf{transitive}, we do not need to add any ordered pairs.
+    \end{parts}
+\end{questions}
+    \include{q1}
+    \include{q3(a)}
+    \include{q3(b)}
+    \include{q3(c)}
+    \include{q4(a)}
+    \include{q4(c)}
+    \include{q5(a)}
+    \include{q5(c)}
+\end{document}
