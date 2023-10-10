@@ -1,0 +1,172 @@
+\documentclass[12pt]{article}
+	
+\usepackage[margin=1in]{geometry}		% For setting margins
+\usepackage{amsmath}				% For Math
+\usepackage{fancyhdr}				% For fancy header/footer
+\usepackage{graphicx}				% For including figure/image
+\usepackage{cancel}					% To use the slash to cancel out stuff in work
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Set up fancy header/footer
+\pagestyle{fancy}
+\fancyhead[CO,C]{CSU11031 - Sample Test}
+\fancyfoot[LO,L]{}
+\fancyfoot[CO,C]{\thepage}
+\fancyfoot[RO,R]{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\noindent  \textbf{Q1. A circuit consists of a dc source feeding three resistors in parallel that are in series with a single resistor. The resistance values of the parallel resistors are \(5\Omega\), \(20\Omega\), \(15\Omega\) respectively and the resistance value of the series resistor is \(10\Omega\). If the power dissipated by the \(10\Omega\) resistor is 20W then what is, approximately, the current through the \(5\Omega\) resistor?}\\
+\\
+\noindent \textbf{A. 1.41mA B. 7.5mA C. 38mA D. 2.7mA E. N/A}\\
+\\
+Find current through the \(10\Omega\) Resistor using \(P = I^2R\)\\
+\[20 = I^2(10)\]
+\[I^2 = 2\]
+\[I = \sqrt{2}A\]\\
+\\
+Find total resistance\\
+Combine parallel resistors using \(\frac{1}{R_T} = \frac{1}{R_1} + \frac{1}{R_2} + \cdots + \frac{1}{R_n}\)\\
+\[\frac{1}{R_T} = \frac{1}{5} + \frac{1}{20} + \frac{1}{15} = \frac{19}{60}\]
+\[R_T = \frac{60}{19}\Omega\]\\
+\\
+Resistors in series using \(R_{Total} = R_1 + R_2 + \cdots + R_n\)\\
+\[R_{Total} = \frac{60}{19} + 10 = \frac{250}{19}\Omega\]\\
+After this idk.......\\
+\\
+\textbf{ANSWER IS E.}\\
+\\
+\textbf{Q2. A dc supply of 10V supplies a capacitor of 10\(\mu F\) in series with a parallel combination of two capacitors of 6\(\mu F\) and 8\(\mu F\) respectively. What is the approximate charge on the 10\(\mu F\) capacitor?\\
+\\
+A. 113\(C\) B. 58.3\(\mu C\) C. 113\(\mu C\) D. 87\(mC\) E. N/A}\\
+\\
+Capacitance of parallel capacitors using \(C_T = C_1 + C_2 + \cdots + C_n\)\\
+\[C_T = 8 + 6 = 14 \mu F\]\\
+Capacitors in series using \(\frac{1}{C_{Total}} = \frac{1}{C_1} + \frac{1}{C_2} + \cdots + \frac{1}{C_n}\)\\
+\[\frac{1}{C_{Total}} = \frac{1}{10} + \frac{1}{14} = \frac{6}{35}\]\\
+\[C_{Total} = \frac{35}{6}\mu F\]
+Total charge using \(C = \frac{Q}{V}\)\\
+\[\frac{35}{6} = \frac{Q}{10}\]
+\[Q = 10\frac{35}{6} = 58.3\mu C\]\\
+\\
+\textbf{ANSWER IS B.}\\
+\\
+\textbf{Q3. What is the approximate potential difference across two series inductors 250mH and 150mH, if the current in the circuit has a peak to peak value of 15A, a frequency of 50Hz and the magnitude of the current at time t=0 is 7.5A.\\
+\\
+A. \(15\sin(100t + \frac{\pi}{4})V\) B. \(-15\sin(100\pi t + \frac{\pi}{2})V\) C. \(7.5\sin(200t + \frac{\pi}{4})V\) D. \(-0.943\sin(100\pi t)V\) E. N/A}\\
+\\
+\(i(t) = A \cdot \sin(\omega \cdot t)\), where \(A\) is the amplitude, \(\omega\) is the radian frequency, and t is the time in seconds.\\
+\\
+Amplitude is found by dividing peak to peak value 15A by 2\\
+\[A = \frac{15}{2} = 7.5\]\\
+Find \(\omega\) using \(\omega = 2\pi f\), where \(f\) is the frequency in Hertz\\
+\[\omega = 2\pi (50) = 100\pi\]\\
+We are going to use cos instead of sin, because function is at its max value, 7.5A, at \(t = 0\)\\
+\[i(t) = 7.5\cos(100\pi t)\]\\
+Get voltage function using \(V_L(t) = L\frac{di(t)}{dt}\)\\
+Find \(\frac{di}{dt}\)\\
+\[\frac{di}{dt}[7.5\cos(100\pi t)]\]
+\[= -7.5\sin(100\pi t) \cdot 100\pi\]
+\[= -750\pi \sin(100\pi t)\]\\
+Total inductance using \(L_{Total} = L_1 + L_2 + \cdots + L_n\)\\
+\[L_{Total} = 0.25 + 0.15 = 0.4 Hz\]
+\[v(t) = 0.4[-750\pi \sin(100\pi t)] = -300\pi \sin(100\pi t)\]\\
+\textbf{ANSWER IS E.}\\
+\\
+\textbf{Q4. Consider a transistor-based amplifier circuit. What is the approximate maximum range of the output voltage?\\
+\\
+A. 0 →\(V_{GS}\) B. 0 → \(V_{DD}\) C. \(V_G\) → \(V_{DD}\) D. \(V_G\)→\(V_{DS}\) E. N/A}\\
+\\
+Answer is in section IX, slide 54\\
+\\
+\textbf{ANSWER IS B.}\\
+\\
+\textbf{Q5. Consider a basic transistor-based inverter for use in a logic circuit. What is the primary purpose of the resistor at the drain?\\
+\\
+A. To drop the supply voltage when the transistor is fully switched on\\
+B. To provide amplification to the input signal\\
+C. To protect the transistor from overheating\\
+D. To limit the current to the output\\
+E. N/A}\\
+\\
+Answer is in section IX, slide 55 (i think ?)\\
+\\
+\textbf{ANSWER IS A.}\\
+\\
+\textbf{Q6. A new digital high-definition phone system is being tested, able to capture voice frequencies up to 20KHz, and is being encoded using 16 bits per sample. The system can carry 24 such channels using Time Division Multiplexing. What is the total bit rate of the multiplexed system?\\
+\\
+A. 320Kb/s B. 40Kb/s C. 15.360Mb/s D. 24Mb/s E. N/A}\\
+\\
+Bitrate using \(R = 2B\log_2L\), where R is the bit rate, B is the frequency in Hertz, and \(\log_2L = n\), which in this case is the bits per sample\\
+\[R = 2(20 \cdot 10^3)(16) = 64000b/s\]\\
+Don't forget that there are 24 channels, meaning that we multiply our result by 24\\
+\[24(64000) = 15360000 b/s = 15.360Mb/s\]\\
+\\
+\textbf{ANSWER IS C.}\\
+\\
+\textbf{Q7. You need to design a system for the transmission of 20 Ultra High-Definition TV channels. Each video channel has a resolution of 3840 x 2160 pixels, a colour depth of 24 bits and a frame rate of 24 frames per second. In addition, each channel uses a compression algorithm to reduce its signal transmission rate by 75 times. Calculate the total bandwidth required if the 20 channels are multiplexed using Time Division Multiplexing, using a 64-QAM modulation.\\
+\\
+A. 1274Mb/s B. 2648MHz C. 414.6Mb/s D. 212.3 MHz E. N/A}\\
+\\
+Being QAM, bandwidth is found using \(B_{mod} = (1 + d)S\), where S is the signal rate/Baud\\
+S is found using \(S = \frac{R}{\log_2(L)}\), where R is bitrate, and L is levels\\
+In order to find R, basically just multiply out all of the values given\\
+\[\frac{resolution \cdot colour depth \cdot fps \cdot channels}{reduction}\]
+\[\frac{(3840 \times 2160)(24)(24)(20)}{75} = 1274019840b/s\]
+\[S = \frac{1274019840}{\log_2 64} = 212336640b/s = 212.3MHz\]\\
+\\
+Unless specified, \(d = 0\), meaning that \(B_{mod} = S\)\\
+\\
+\textbf{ANSWER IS D.}\\
+\\
+\textbf{Q8. You need to design a communications system to support live transmission of 5 Ultra High Definition (UHD) channels, each having a pixel resolution of 3840 x 2160. The channels have a frame rate of 25 frames/sec and a colour depth of 24 bits. The audio track for eack UHD channel is 5+1 surround (6 channels in total) with each encoded at CD quality (I.e. maximum audio frequency of 22.05KHz and quattisation at 16 bits per sample). Calculate the overall data rate of the system above with uncompressed UHD channels and all the audio tracks, assuming the channels are time division multiplexed.\\
+\\
+A. 24.86Mb/s B. 12.48Mb/s C. 12.48Gb/s D. 24.96Gb/s E. N/A}\\
+\\
+\(R_{Total}\) using \(R_{Total} = R_1 + R_2\)\\
+\(R_1\), or the visual bit rate by multiplying out the values\\
+\[R_1 = (3840 \times 2160)(25)(24) = 4976640000b/s\]\\
+\(R_2\), or the audio bit rate using \(R = 2B\log_2L\), not forgetting to multiply this value by the number of channels\\
+\[R_2 = 6[2(22.05 \cdot 10^3)(16)] = 4233600b/s\]
+\[R_{Total} = 4976640000 + 4233600 = 4980873600b/s \]
+Multiplying by the number of channels\\
+\[R = 5 \cdot 4980873600 = 24904368000 = 24.9Gb/s\]\\
+Not sure why it's not exactly right...\\
+\\
+\textbf{ANSWER IS D.}\\
+\\
+\textbf{Q9. You need to digitise a music recording for a high-fidelity system. The maximum audio frequency of the signal is 20KHz, the system is stereo, and you want to quantise it at 16 bits per sample. Calculate the bandwidth of the signal, if modulated at 1 MHz frequency using 32-QAM.\\
+\\
+A. 1024Mb/s B. 256KHz C. 1024MHz D. 24Gb/s E. N/A}\\
+\\
+Being QAM, bandwidth is found using \(B_{mod} = (1 + d)S\), where S is the signal rate/Baud\\
+S is found using \(S = \frac{R}{\log_2L}\), where R is bitrate, and L is levels\\
+\\
+R is found by multiplying \(2 \times f_{max}\) by n, the bits per sample, and multiplying this by 2 because stereo means that there are two channels\\
+\[R = 2[2(20\cdot 10^3)(16)] = 1280000b/s\]\
+\[S = \frac{1280000}{\log_2 32} = 256000Hz = 256KHz\]
+Unless specified, \(d = 0\), meaning that \(B_{mod} = S\)\\
+\\
+\textbf{ANSWER IS B.}\\
+\\
+\textbf{Q10. You need to design a communications system for transmitting Ultra High Definition (UHD) digital video channels, each with a pixel resolution of 3840 x 2160. Channels have a frame rate of 25 frames per second and a colour depth of 30 bits. The audio track for each channel is 7+1 surround (8 channels in total), each oversampled for a signal with maximum frequency of 96 KHz and quantisation at 20 bits per sample. What is the minimum carrier frequency that you would need to choose if you were to transmit the TV channel as is (including the audio tracks), with a 64-QAM modulation?\\
+\\
+A. 521MHz B. 1042MHz C. 260.5MHz D. 2.2Gb/s E. N/A}\\
+\\
+Being QAM, bandwidth is found using \(B_{mod} = (1 + d)S\), where S is the signal rate/Baud\\
+S is found using \(S = \frac{R}{\log_2L}\), where R is bitrate, and L is levels\\
+\\
+\(R_{Total}\) using \(R_{Total} = R_1 + R_2\)\\
+\(R_1\), or the visual bit rate by multiplying out the values\\
+\[R_1 = (3840 \times 2160)(25)(30) = 6220800000b/s\]\\
+\(R_2\), or the audio bit rate is found by multiplying \(2 \times f_{max}\) by n, the bits per sample, and multiplying this by the number of channels\\
+\[R = 8[2(96\cdot 10^3)(20)] = 30720000b/s\]
+\[R_{Total} = 6220800000 + 30720000 = 6251520000b/s\]
+\[S = \frac{6251520000}{\log_2 64} = 1041920000Hz\]\\
+\\
+Carrier frequency is \(\frac{bandwidth}{2}\)
+\[\frac{1041920000}{2} = 520960000Hz = 521MHz\]
+\\
+\textbf{ANSWER IS A.}
+\end{document}
