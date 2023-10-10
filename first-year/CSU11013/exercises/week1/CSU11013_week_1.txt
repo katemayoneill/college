@@ -1,0 +1,104 @@
+ex 1:
+
+int i=0;
+void setup() {
+  size (200, 200);
+  noStroke();
+  
+  i=0;
+}
+void draw() {
+  background(255);
+  fill(#FFFF00);
+  rect(-i, 20, 50, 50);
+  fill(#009900);
+  rect(i, 40, 50, 50);
+  fill(#66B2FF);
+  rect(30, i, 50, 50);
+  i++;
+}
+
+ex 2:
+
+int i=0;
+void setup() {
+  size (200, 200);
+  noStroke();
+}
+void draw() {
+  background(255);
+  fill(#FFFF00);
+  rect(i, 20, 50, 50);
+  if(i++>=199) {
+    i=0;
+  }
+}
+
+ex 3:
+
+int i=0;
+void setup() {
+  size (200, 200);
+  noStroke();
+}
+void draw() {
+  background(255);
+  fill(#FFFF00);
+  rect(i, 20, 50, 50);
+  if(i++>=199) {
+    i=-50;
+  }
+}
+// not wrapping at all
+
+ex 4:
+int i=-50, x=199;
+void setup() {
+  size (200, 200);
+  noStroke();
+}
+void draw() {
+  background(255);
+  fill(#FFFF00);
+  rect(i, 20, 50, 50);
+  if(i++>=199) {
+    i=-50;
+  }
+    fill(#009900);
+  rect(x, 90, 50, 50);
+  if(x--<=-50) {
+    x=199;
+  }
+}
+// still not wrapping
+
+ex 5:
+
+int x = 0, y = 0, z = 0;
+void setup() {
+  size (200, 200);
+  noStroke();
+}
+void draw() {
+  background(255);
+  x++;
+  y = (int)sin(x);
+  z++;
+  fill(#FFFF00+z);
+  rect(x, y, 50, 50);
+  if(x++>=199) {
+    x=-50;
+  }
+    fill(#009900+z);
+  rect(x, y, 50, 50);
+  if(x++<=-50) {
+    y=199;
+  }
+}
+
+
+
+
+
+
+
