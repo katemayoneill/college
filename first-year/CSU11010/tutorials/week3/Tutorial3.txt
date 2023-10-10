@@ -1,0 +1,5 @@
+Part 1:
+Update the Bank program to create two methods, one overriding the other, named findCustomer() which returns the name of the customer from the array passed to the method.
+The first method uses the parameters account number and the array BankCustomer[]. The second method uses the parameters date of birth, address and the array BankCustomer[].
+Part 2:
+Update the bank program to use an ArrayList instead of an Array. Write a method findCustomer(ArrayList<BankCustomer> array, int accNumber) to find a customer of the bank.
