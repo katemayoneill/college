@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='no' ?>
+
+<!DOCTYPE Payments[ <!ELEMENT Payments (Payment)*>
+<!ELEMENT Payment (Payment.orderID, Payment.customerID, Payment.date, Payment.totalToPay, Payment.paymentMethod)>
+
+<!ELEMENT Payment.orderID (#PCDATA)>
+<!ELEMENT Payment.customerID (#PCDATA)>
+<!ELEMENT Payment.date (#PCDATA)>
+<!ELEMENT Payment.totalToPay (#PCDATA)>
+<!ELEMENT Payment.paymentMethod (#PCDATA)>
+<!ATTLIST Payment Payment.ID CDATA #REQUIRED>
+]>
+
+<Payments>
+    <Payment Payment.ID = "22346284">
+        <Payment.orderID>53624385</Payment.orderID>
+        <Payment.customerID>43948327</Payment.customerID>
+        <Payment.date>20211230</Payment.date>
+        <Payment.totalToPay>40.25</Payment.totalToPay>
+        <Payment.paymentMethod>1</Payment.paymentMethod>
+    </Payment>
+    <Payment Payment.ID = "99675123">
+        <Payment.orderID>776548765</Payment.orderID>
+        <Payment.customerID>43948327</Payment.customerID>
+        <Payment.date>20211221</Payment.date>
+        <Payment.totalToPay>12.50</Payment.totalToPay>
+        <Payment.paymentMethod>2</Payment.paymentMethod>
+    </Payment>
+</Payments>
