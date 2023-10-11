@@ -105,3 +105,24 @@ The submission process for this part consists of three steps:
 ## Marking Scheme
 
 The contribution of the assignment to the overall mark for the module is 30% or 30 points. The submission for part 1 and 2 will be each marked out of 5 points and the submission for the final part will be marked out of 20 points. The mark for the final deliverable will be split into 50% for the functionality of your solution and 50% for the documentation through the report.
+
+### Part 1
+
+An indicative marking scheme for the submissions for part 1 of the assignment is as follow:  
+
+- 1 point - for providing a video
+- 2 points - the before + and demonstrating a traffic capture
+- 3 points - the before + an explanation of network traffic
+- 4 points - the before + demonstrating that they have started on their own protocol
+- 5 points - the before + demonstrating their own protocol on virtual infrastructure
+
+The video should describe your progress in the first couple of weeks. I think of these videos as a replacement of an update in a standup meeting where you have been given the task to implement this protocol and during a regular meeting you need update your team on your progress i.e. what you have done, what your thoughts are behind your decisions and then what you plan is going forward.
+
+### Part 2
+
+An indicative marking scheme for part 2 of the assignment looks as follows:
+- 1 point - Basic protocol that forwards video content from producer to broker
+- 2 points - Subscription by consumers & processing and forwarding of video content by broker to consumers
+- 3 points - Multiple producers, starting and stopping at various times; and multiple consumers, subscribing and leaving at various times
+- +1 points - the before + 2 or 3 types of contents send out by producers and handled by broker(s)
+- +1 points - the before + explanation of the protocol in captured network traffic; good explanation of the protocol in general
