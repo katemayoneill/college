@@ -1,7 +1,7 @@
 # based on https://pythontic.com/modules/socket/udp-client-server-example
 import socket
 
-localIP     = "server"
+localIP     = "broker"
 localPort   = 50000
 bufferSize  = 1024
 
