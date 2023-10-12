@@ -15,3 +15,5 @@ UDPClientSocket.sendto(bytesToSend, serverAddressPort)
 msgFromServer = UDPClientSocket.recvfrom(bufferSize)
 msg = "Message from broker {}".format(msgFromServer[0])
 print(msg)
+
+# TODO allow subscribing and unsibscribing to producers streams

@@ -1,32 +1,19 @@
 # based on https://pythontic.com/modules/socket/udp-client-server-example
 import socket
 
-localIP     = "server"
-localPort   = 50000
-bufferSize  = 1024
+msgFromClient       = "publisher connected to broker"
+bytesToSend         = str.encode(msgFromClient)
+serverAddressPort   = ("broker", 50000)
+bufferSize          = 1024
 
-msgFromServer       = "Hello UDP Client"
-bytesToSend         = str.encode(msgFromServer)
+# Create a UDP socket at publisher side
+UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
-# Create a datagram socket
-UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+# Send to broker using created UDP socket
+UDPClientSocket.sendto(bytesToSend, serverAddressPort)
 
-# Bind to address and ip
-UDPServerSocket.bind((localIP, localPort))
+msgFromServer = UDPClientSocket.recvfrom(bufferSize)
+msg = "Message from broker {}".format(msgFromServer[0])
+print(msg)
 
-print("UDP server up and listening")
-
-# Listen for incoming datagrams
-while(True):
-    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-    message = bytesAddressPair[0]
-    address = bytesAddressPair[1]
-
-    clientMsg = "Message from Client:{}".format(message)
-    clientIP  = "Client IP Address:{}".format(address)
-    
-    print(clientMsg)
-    print(clientIP)
-
-    # Sending a reply to client
-    UDPServerSocket.sendto(bytesToSend, address)
+# TODO start and stop streaming, send these meagges to broker
