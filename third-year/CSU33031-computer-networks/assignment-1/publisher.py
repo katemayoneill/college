@@ -17,3 +17,5 @@ msg = "Message from broker {}".format(msgFromServer[0])
 print(msg)
 
 # TODO start and stop streaming, send these meagges to broker
+# pub(producerid streamid videoframeid lengthofvideoframe payload)
+# start, stop

@@ -17,3 +17,6 @@ msg = "Message from broker {}".format(msgFromServer[0])
 print(msg)
 
 # TODO allow subscribing and unsibscribing to producers streams
+# sub(producerid streamid)
+# ack(producerid streamid videoframeid)
+
