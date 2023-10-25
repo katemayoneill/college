@@ -35,3 +35,30 @@ Topics addressed in this module include:
 - Internet Protocol v4/v6;
 - Routing Protocols;
 - Software-Defined Networking and OpenFlow Past & current structure of the Internet.
+
+## Lectures
+
+### Flow control
+
+#### OSI Stack & Data Units
+
+| Layer |              |
+| ---   | ---          |
+| 7     | Application  |
+| 6     | Presentation |
+| 5     | Session      |
+| 4     | Transport    |
+| 3     | Network      |
+| 2     | Data-Link    |
+| 1     | Physical     |
+
+#### General Terms
+
+|            |                      |
+| ---        | ---                  |
+| **Sender** | issues 'signals'     | 
+| Receiver   | receives 'signals'   | 
+| **Client** | requests info        |
+| Server     | serves info          | 
+| **Master** | controls other nodes | 
+| Slave      | is being controlled  |
