@@ -51,7 +51,7 @@ def pub_service():
         
         if address in subs:
             if subs[address] == topic:
-                sub_sock.sendto(frame_data, address)
+                sub_sock.sendto(frame_data, ("subscriber", 50001))
         
         print("published video frame to subscriber at", address)
 

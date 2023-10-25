@@ -1,21 +1,29 @@
 # based on https://pythontic.com/modules/socket/udp-client-server-example
 import socket
+import time
+import random
 
-msgFromClient       = "publisher connected to broker"
-bytesToSend         = str.encode(msgFromClient)
-serverAddressPort   = ("broker", 50000)
-bufferSize          = 1024
+broker_ip = "broker"
+pub_port = 50000
+buffer_size = 1024
 
-# Create a UDP socket at publisher side
-UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+# Create a socket for publishing
+pub_sock = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
-# Send to broker using created UDP socket
-UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+print("producer is ready to send data to the broker on port", pub_port)
 
-msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-msg = "Message from broker {}".format(msgFromServer[0])
-print(msg)
+# Function to simulate data production
+def generate_data():
+    # Replace this with your actual data generation logic
+    return str(random.randint(0, 100)).encode()  # Generating a random number for demonstration
 
-# TODO start and stop streaming, send these meagges to broker
-# pub(producerid streamid videoframeid lengthofvideoframe payload)
-# start, stop
+# Function to publish data
+def publish_data(data):
+    pub_sock.sendto(data, (broker_ip, pub_port))
+    print(f"published data: {data.decode()}")
+
+# Produce and publish data at regular intervals
+while True:
+    data = generate_data()
+    publish_data(data)
+    time.sleep(1)  # Simulating data production every 1 second

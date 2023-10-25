@@ -35,7 +35,7 @@ def unsub():
 # Function to receive and display frames
 def pub():
     while True:
-        data, _ = sub_sock.recvfrom(buffer_size)
+        data = sub_sock.recvfrom(buffer_size)
         # Process the received frame data (e.g., display it)
         print("received frame data:", data)  # Replace with your actual processing/display logic
 
