@@ -45,4 +45,4 @@ This approach allows the network to establish routing information dynamically as
 ## Step 2: expand
 - number of packets
 - number of routers & endpoints
-- handke exceptional cases
+- handle exceptional cases
