@@ -35,3 +35,14 @@ chat gpt: "A reactive routing approach, also known as on-demand routing, establi
    - A route cache can be used to store routing information and avoid repetitive route discovery.
 
 This approach allows the network to establish routing information dynamically as needed, reducing the overhead of maintaining routing tables for every possible destination. It is often used in ad-hoc and mesh networks where nodes may frequently change their positions or join/leave the network. The route discovery process is triggered reactively when data needs to be sent, ensuring efficient resource usage."
+
+## Step 1: figure out
+- communication between endpoints and router
+- broadcast of requests to resolve an address 
+- response to request broadcast
+- forwarding of original information
+
+## Step 2: expand
+- number of packets
+- number of routers & endpoints
+- handke exceptional cases
