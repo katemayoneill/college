@@ -1,5 +1,4 @@
-# Initialisation script
-# TODO: Router initialisation and connection
+
 
 # Variables
 subnet0=172.20.0.0/16
@@ -45,8 +44,3 @@ sudo docker network disconnect bridge a2-router1
 echo -e "\n💫 Creating endpoint image"
 sudo docker build -t a2-endpoint ./endpoint
 
-# remove tools.py from directories
-echo -e "\n🖌 Cleaning up"
-rm controller/tools.py
-rm endpoint/tools.py
-rm router/tools.py
