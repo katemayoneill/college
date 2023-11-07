@@ -6,19 +6,22 @@
 subnet=172.20.0.0/16
 
 # Create Network
-echo -e "\n🌐 Creating network"
+echo -e "\n🌐 Creating network 🌐"
 sudo docker network create -d bridge --subnet $subnet a2-network
 
 # Copy tools.py to directories
+echo -e "\n🔨 Copying tools.py to directories 🔧"
 cp tools.py endpoint/
 cp tools.py router/
 
 # Create router
+echo -e "\n📡 Creating router 📡"
 sudo docker build -t a2-router ./router
 sudo docker container create --name a2-router --cap-add=ALL a2-router
 sudo docker network connect a2-network a2-router
 
 # Create Endpoints
+echo -e "\n⚜️ Creating network ⚜️"
 sudo docker build -t a2-endpoint ./endpoint
 
 # remove tools.py from directories
