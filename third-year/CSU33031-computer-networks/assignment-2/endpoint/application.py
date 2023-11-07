@@ -1,5 +1,4 @@
 # Simple messaging application
-# Author: Lydia MacBride
 
 import socket
 import threading
