@@ -1,4 +1,4 @@
-FROM python:3
+FROM python
 WORKDIR .
 COPY . .
 CMD ["-i", "service.py"]
