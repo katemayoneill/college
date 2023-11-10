@@ -1,10 +1,8 @@
-# Router device, routes incoming packets towards their destination
-
 import socket
 import threading
 import time
-from tools import *
 
+from tools import *
 
 # Variables
 port = 51510

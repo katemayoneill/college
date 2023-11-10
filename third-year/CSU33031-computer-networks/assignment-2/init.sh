@@ -44,7 +44,7 @@ docker network connect network1 router
 docker network disconnect bridge router
 
 # remove tools.py from directories
-echo -e "\n🧹🫧 Cleaning up..."
-rm controller/tools.py
-rm endpoint/tools.py
-rm router/tools.py
+# echo -e "\n🧹🫧 Cleaning up..."
+# rm controller/tools.py
+# rm endpoint/tools.py
+# rm router/tools.py
