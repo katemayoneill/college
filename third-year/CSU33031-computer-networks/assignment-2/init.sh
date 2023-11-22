@@ -4,6 +4,8 @@
 # variables
 subnet0=172.20.0.0/16
 subnet1=172.30.0.0/16
+subnet2=172.40.0.0/16
+subnet3=172.50.0.0/16
 
 # build images
 echo -e "\n👷‍♀️ Building images..."
@@ -17,16 +19,23 @@ docker build -t endpoint ./endpoint
 # create containers
 echo -e "\n📦 Creating containers..."
 echo -e "\n🎮 controller..."
-docker create -ti --name controller --cap-add=ALL controller
-echo -e "\n📡 router..."
-docker create -ti --name router --cap-add=ALL router
-echo -e "\n🖥️ endpoint..."
-docker create -ti --name endpoint --cap-add=ALL endpoint
+docker create --name controller --cap-add=ALL controller
+
+echo -e "\n📡 router0..."
+docker create --name router0 --cap-add=ALL router
+echo -e "\n📡 router1..."
+docker create --name router1 --cap-add=ALL router
+echo -e "\n📡 router2..."
+docker create --name router2 --cap-add=ALL router
+
+echo -e "\n‼️ Remember to create endpoints using endpoint.sh"
 
 # create networks
 echo -e "\n🌐 Creating networks..."
 docker network create -d bridge --subnet $subnet0 network0
 docker network create -d bridge --subnet $subnet1 network1
+docker network create -d bridge --subnet $subnet2 network2
+docker network create -d bridge --subnet $subnet3 network3
 
 # Copy tools.py to directories
 echo -e "\n👾 Copying tools library to subdirectories"
@@ -35,16 +44,24 @@ cp tools.py endpoint/
 cp tools.py router/
 
 # connect everything to networks
-echo -e "\n🔌 Connecting things up..."
-docker network connect anetwork0 controller
+echo -e "\n🔌 Connecting controller up with all networks..."
+docker network connect network0 controller
 docker network connect network1 controller
+docker network connect network2 controller
+docker network connect network3 controller
 docker network disconnect bridge controller
-docker network connect network0 router
-docker network connect network1 router
-docker network disconnect bridge router
 
-# remove tools.py from directories
-# echo -e "\n🧹🫧 Cleaning up..."
-# rm controller/tools.py
-# rm endpoint/tools.py
-# rm router/tools.py
+echo -e "\n🧩 Connecting router0 to network0 and network1"
+docker network connect network0 router0
+docker network connect network1 router0
+docker network disconnect bridge router0
+
+echo -e "\n🧩 Connecting router1 to network0 and network2"
+docker network connect network0 router1
+docker network connect network2 router1
+docker network disconnect bridge router1
+
+echo -e "\n🧩 Connecting router2 to network2 and network3"
+docker network connect network2 router2
+docker network connect network3 router2
+docker network disconnect bridge router2
