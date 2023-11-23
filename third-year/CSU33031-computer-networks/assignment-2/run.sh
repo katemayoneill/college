@@ -1,11 +1,11 @@
-echo -e "🌙 Launching components"
-
-# Launch server
-echo -e "\n🦉 Launching controller"
+# Launch routers
+printf "\n🚅 Launching routers"
 sudo docker container start controller
+sudo docker container start router0
+sudo docker container start router1
+sudo docker container start router2
 
-# Launch sensors
-echo -e "\n🚅 Launching routers"
-# sudo docker kill $(sudo docker container ls -q)
-#sudo docker container start $(sudo docker container ls -a -q -f name="router*") > /dev/null
-sudo docker container start router
+printf "\nLaunching controller in interactive mode..."
+
+clear
+docker logs -f controller

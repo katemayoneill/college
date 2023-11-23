@@ -1,4 +1,4 @@
-FROM python
+FROM python:3
 WORKDIR .
 COPY . .
 CMD ["-u", "main.py"]

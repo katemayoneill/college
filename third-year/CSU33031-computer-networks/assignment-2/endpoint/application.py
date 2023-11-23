@@ -1,6 +1,6 @@
 # Simple messaging application
+# Author: Lydia MacBride
 
-import socket
 import threading
 import time
 from tools import *
@@ -19,9 +19,9 @@ incoming = list()
 outgoing = list()
 
 
-# Message Reception
-# TODO: Might need to convert this to a function run in main()
-class RecMessages(threading.Thread):
+# Packet Reception
+# TODO: Generalise
+class RecPackets(threading.Thread):
     def run(self):
         print("Message reception thread starting")
 
@@ -35,27 +35,23 @@ class RecMessages(threading.Thread):
     pass
 
 
-# Message Sending thread
-# TODO: Generalise this
-class SendMessages(threading.Thread):
+# Packet Sending thread
+class SendPacket(threading.Thread):
     def run(self):
         print("Message sending thread starting")
 
         global running, s, loc_port
         while running:
-            for msg in outgoing:
-                print_d(debug, "Sending the message \"" + msg[1] + "\" to " + msg[0])
+            for pck in outgoing:
 
-                s.sendto(msg_enc(msg[0], msg[1]), ('localhost', loc_port))
+                s.sendto(pck, ('localhost', loc_port))
 
-                outgoing.remove(msg)
-
-            time.sleep(1.0)
+                outgoing.remove(pck)
 
     pass
 
 
-# TODO: User input thread
+# User input thread
 class ProcInput(threading.Thread):
     def run(self):
         print("User input thread starting")
@@ -68,20 +64,34 @@ class ProcInput(threading.Thread):
             prompt = "✨" if len(incoming) == 0 else "💌"
             user_in = input("\n" + prompt + "〉")
 
-            # Send <msg>
-            # TODO: Add recipient parameter
+            # Send <msg>rec_messages
             # TODO: Character limit of 2 bytes
             if user_in[0:4] == "send":
-                outgoing.append((name, user_in[5:]))
+                input_str = user_in.split(" ")
+
+                # Check for invalid input
+                if len(input_str) < 3:
+                    print("Invalid input")
+                    continue
+
+                rec = input_str[1]
+                msg = ' '.join(input_str[2:])
+
+                print("Sending: " + msg)
+                outgoing.append(msg_enc(rec, name, msg))
 
             # ls TODO: -a
             elif user_in[0:2] == "ls":
                 for msg in incoming:
-                    # TODO: Print message reception time
                     print(msg[2] + " | " + msg[0] + ": " + msg[1])
                     incoming.remove(msg)
 
                     # TODO: Store removed messages in file
+
+            # ip
+            elif user_in == "ip":
+                print("Hostname: " + str(socket.gethostname()))
+                print("IP: " + str(socket.gethostbyname(socket.gethostname())))
 
             # debug
             elif user_in == "debug":
@@ -95,11 +105,12 @@ class ProcInput(threading.Thread):
 
             # help
             elif user_in == "help":
-                print("send <msg>       Send a message\n"
-                      "ls (-a)          List unread messages (-a to list all messages)\n"
-                      "debug            Toggle debug output\n" 
-                      "exit             Stop and exit application\n"
-                      "help             List available commands")
+                print("send <user> <msg>    Send a message to a specified user\n"
+                      "ls                   List unread messages\n"
+                      "ip                   List endpoint's hostname and IP\n"
+                      "debug                Toggle debug output\n" 
+                      "exit                 Stop and exit application\n"
+                      "help                 List available commands")
 
             # Invalid input
             else:
@@ -122,12 +133,12 @@ def main(name_in):
     name = name_in
 
     # Start message reception thread
-    rec_messages = RecMessages()
-    rec_messages.start()
+    rec_packets = RecPackets()
+    rec_packets.start()
 
     # Start message sending thread
-    send_messages = SendMessages()
-    send_messages.start()
+    send_packets = SendPacket()
+    send_packets.start()
 
     # Start user input thread
     proc_input = ProcInput()
@@ -144,13 +155,13 @@ def main(name_in):
             s.sendto(exit_pck, ("localhost", loc_port))
 
             # Stop threads
-            send_messages.join()
+            send_packets.join()
             proc_input.join()
 
             # Send exit packet to close packet reception
             s.sendto(exit_pck, ("localhost", app_port))
 
-            rec_messages.join()
+            rec_packets.join()
 
             break
 
